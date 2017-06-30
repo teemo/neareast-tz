@@ -2,7 +2,7 @@
 
 The goal of this script is to find the nearest timezone for a given point that does not have a timezone.
 
-If it is lesser we replace null by the nearest timezone otherwise we leave in with null.
+If it is less than a threshold, we replace null by the nearest timezone otherwise we leave it to null.
 
 Input parameter:
 * inputFile: path to a csv (it can be gzip)
