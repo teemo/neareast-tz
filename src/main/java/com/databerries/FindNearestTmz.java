@@ -16,7 +16,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static com.databerries.IOUtils.readLines;
@@ -46,7 +45,6 @@ public class FindNearestTmz {
         ExecutorService executorService = Executors.newFixedThreadPool(batchSize);
 
         List<Future<List<String>>> futures = new ArrayList<>();
-        AtomicInteger count = new AtomicInteger(0);
         for (int i = 0; i < numberOfBatch; i++) {
             int from = i * batchSize;
             int to = from + batchSize;
@@ -65,10 +63,6 @@ public class FindNearestTmz {
                         }
                     } else {
                         lineProcessed.add(line);
-                    }
-                    int i1 = count.incrementAndGet();
-                    if (i1 % 100_000 == 0) {
-                        System.out.println(i1);
                     }
                 }
                 return lineProcessed;
